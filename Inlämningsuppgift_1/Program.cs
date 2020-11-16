@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MiniCalc
 {
@@ -8,91 +9,49 @@ namespace MiniCalc
         {
             Boolean isRunning = true;
             Console.BackgroundColor = ConsoleColor.Red;
-            Console.Title = "Miniräknare";
-            Console.WriteLine("Välkommen til miniräknaren!");
+            Console.Title = "Miniräknare | Inlämningsuppgift 1";
+            Console.WriteLine("Let's do some calculations!");
+            List<int> calculations = new List<int>();
+            int totalSum = 0;
 
             while (isRunning)
             {
                 Console.WriteLine(" ");
                 Console.WriteLine("=========================");
-                Console.WriteLine("Vad vill du göra?");
-                Console.WriteLine("1. Addera två tal");
-                Console.WriteLine("2. Sub två tal");
-                Console.WriteLine("3. Multiplicera två tal");
-                Console.WriteLine("4. Dividera två tal");
-                Console.WriteLine("5. Returnera återstoden");
-                Console.WriteLine("6. Avsluta");
+                Console.WriteLine("1. Enter first operator: ");
+                string firstOperator = Console.ReadLine();
+                Console.WriteLine("2. Enter second operator: ");
+                string secondOperator = Console.ReadLine();
+                Console.WriteLine("3. Enter first term: ");
+                string firstTerm = Console.ReadLine();
+                Console.WriteLine("4. Enter second term: ");
+                string secondTerm = Console.ReadLine();
+                Console.WriteLine("5. Enter third term: ");
+                string thirdTerm = Console.ReadLine();
+                string expression = $"{firstTerm} {firstOperator} {secondTerm} {secondOperator} {thirdTerm}";
+
+                Console.WriteLine("6. Another try? [Yes]/[No]");
+                string answer = Console.ReadLine();
                 Console.WriteLine("=========================");
 
-                int userInput = Convert.ToInt32(Console.ReadLine());
-                Console.Beep();
-
-                if (userInput == 1)
+                if (answer.ToLower() == "no")
                 {
-                    Console.WriteLine("Du valde +");
-                    Console.Write("Skriv in det första talet: ");
-                    int a = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    Console.Write("Skriv in det andra talet: ");
-                    int b = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    int result = a + b;
-                    Console.WriteLine("Resultat är: " + result);
-                }
-                if (userInput == 2)
-                {
-                    Console.WriteLine("Du valde -");
-                    Console.Write("Skriv in det första talet: ");
-                    int a = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    Console.Write("Skriv in det andra talet: ");
-                    int b = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    int result = a - b;
-                    Console.WriteLine("Resultat är: " + result);
-                }
-                if (userInput == 3)
-                {
-                    Console.WriteLine("Du valde *");
-                    Console.Write("Skriv in det första talet: ");
-                    int a = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    Console.Write("Skriv in det andra talet: ");
-                    int b = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    int result = a * b;
-                    Console.WriteLine("Resultat är: " + result);
-                }
-                if (userInput == 4)
-                {
-                    Console.WriteLine("Du valde /");
-                    Console.Write("Skriv in det första talet: ");
-                    int a = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    Console.Write("Skriv in det andra talet: ");
-                    int b = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    int result = a / b;
-                    Console.WriteLine("Resultat är: " + result);
-                }
-                if (userInput == 5)
-                {
-                    Console.WriteLine("Du valde %");
-                    Console.Write("Skriv in det första talet: ");
-                    int a = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    Console.Write("Skriv in det andra talet: ");
-                    int b = Convert.ToInt32(Console.ReadLine());
-                    Console.Beep();
-                    int result = a % b;
-                    Console.WriteLine("Resultat är: " + result);
-                }
-                if (userInput == 6)
-                {
-                    isRunning = false;
-                }
+                    isRunning = false; 
+                } 
             }
-            Console.WriteLine("Tack och hej då!");
+
+            if (totalSum == 100)
+            {
+                Console.WriteLine("Cool, now you have a hundred, clap clap");
+            }
+            else if (totalSum > 100)
+            {
+                Console.WriteLine("More then a hundred");
+            }
+            else if (totalSum < 100)
+            {
+                Console.WriteLine("Less then a hundred");
+            }
         }
     }
 }
