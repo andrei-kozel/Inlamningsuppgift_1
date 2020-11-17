@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace MiniCalc
 {
@@ -11,8 +12,8 @@ namespace MiniCalc
             Console.BackgroundColor = ConsoleColor.Red;
             Console.Title = "Miniräknare | Inlämningsuppgift 1";
             Console.WriteLine("Let's do some calculations!");
-            List<int> calculations = new List<int>();
-            int totalSum = 0;
+            List<double> calculations = new List<double>();
+            double totalSum = 0;
 
             while (isRunning)
             {
@@ -29,6 +30,9 @@ namespace MiniCalc
                 Console.WriteLine("5. Enter third term: ");
                 string thirdTerm = Console.ReadLine();
                 string expression = $"{firstTerm} {firstOperator} {secondTerm} {secondOperator} {thirdTerm}";
+                double result = Convert.ToDouble(new DataTable().Compute(expression, null));
+                Console.WriteLine($"{expression} = {result}");
+                calculations.Add(result);
 
                 Console.WriteLine("6. Another try? [Yes]/[No]");
                 string answer = Console.ReadLine();
@@ -39,6 +43,10 @@ namespace MiniCalc
                     isRunning = false; 
                 } 
             }
+
+            calculations.ForEach(item => totalSum = Convert.ToDouble(totalSum) + Convert.ToDouble(item));
+
+            Console.WriteLine($"Total sum: {totalSum}");
 
             if (totalSum == 100)
             {
