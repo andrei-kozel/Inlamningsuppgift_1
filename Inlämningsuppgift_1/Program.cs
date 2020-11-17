@@ -19,25 +19,36 @@ namespace MiniCalc
             {
                 Console.WriteLine(" ");
                 Console.WriteLine("=========================");
-                Console.WriteLine("1. Enter first operator: ");
+                Console.Write("1. Enter first operator: ");
                 string firstOperator = Console.ReadLine();
-                Console.WriteLine("2. Enter second operator: ");
+                Console.Write("2. Enter second operator: ");
                 string secondOperator = Console.ReadLine();
-                Console.WriteLine("3. Enter first term: ");
+                Console.Write("3. Enter first term: ");
                 string firstTerm = Console.ReadLine();
-                Console.WriteLine("4. Enter second term: ");
+                Console.Write("4. Enter second term: ");
                 string secondTerm = Console.ReadLine();
-                Console.WriteLine("5. Enter third term: ");
+                Console.Write("5. Enter third term: ");
                 string thirdTerm = Console.ReadLine();
                 string expression = $"{firstTerm} {firstOperator} {secondTerm} {secondOperator} {thirdTerm}";
-                double result = Convert.ToDouble(new DataTable().Compute(expression, null));
-                Console.WriteLine($"{expression} = {result}");
-                calculations.Add(result);
+                double sum = Convert.ToDouble(new DataTable().Compute(expression, null));
+                Console.WriteLine($"{expression} = {sum}");
+                calculations.Add(sum);
 
-                Console.WriteLine("6. Another try? [Yes]/[No]");
+                if (sum == 100)
+                {
+                    Console.WriteLine("Cool, now you have a hundred, clap clap");
+                }
+                else if (sum > 100)
+                {
+                    Console.WriteLine("More then a hundred");
+                }
+                else if (sum < 100)
+                {
+                    Console.WriteLine("Less then a hundred");
+                }
+
+                Console.Write("Another try? [Yes]/[No]: ");
                 string answer = Console.ReadLine();
-                Console.WriteLine("=========================");
-
                 if (answer.ToLower() == "no")
                 {
                     isRunning = false; 
@@ -45,21 +56,9 @@ namespace MiniCalc
             }
 
             calculations.ForEach(item => totalSum = Convert.ToDouble(totalSum) + Convert.ToDouble(item));
-
-            Console.WriteLine($"Total sum: {totalSum}");
-
-            if (totalSum == 100)
-            {
-                Console.WriteLine("Cool, now you have a hundred, clap clap");
-            }
-            else if (totalSum > 100)
-            {
-                Console.WriteLine("More then a hundred");
-            }
-            else if (totalSum < 100)
-            {
-                Console.WriteLine("Less then a hundred");
-            }
+            Console.WriteLine(" ");
+            Console.WriteLine($"Thank you for playing. The sum of all round is {totalSum}. Bye");
+            Console.WriteLine("=========================");
         }
     }
 }
