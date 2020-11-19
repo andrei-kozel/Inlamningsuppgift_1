@@ -24,13 +24,23 @@ namespace MiniCalc
                 Console.Write("2. Enter second operator: ");
                 string secondOperator = Console.ReadLine();
                 Console.Write("3. Enter first term: ");
-                string firstTerm = Console.ReadLine();
+                double firstTerm = Convert.ToDouble(Console.ReadLine());
                 Console.Write("4. Enter second term: ");
-                string secondTerm = Console.ReadLine();
+                double secondTerm = Convert.ToDouble(Console.ReadLine());
                 Console.Write("5. Enter third term: ");
-                string thirdTerm = Console.ReadLine();
+                double thirdTerm = Convert.ToDouble(Console.ReadLine());
                 string expression = $"{firstTerm} {firstOperator} {secondTerm} {secondOperator} {thirdTerm}";
-                double sum = Convert.ToDouble(new DataTable().Compute(expression, null));
+                double sum = 0;
+
+                if (secondOperator == "/" || secondOperator == "*") {
+                    sum = computeTwoValues(secondTerm, thirdTerm, secondOperator);
+                    sum = computeTwoValues(firstTerm, sum, firstOperator);
+                } else
+                {
+                    sum = computeTwoValues(firstTerm, secondTerm, firstOperator);
+                    sum = computeTwoValues(sum, thirdTerm, secondOperator);
+                }
+
                 Console.WriteLine($"{expression} = {sum}");
                 calculations.Add(sum);
 
@@ -59,6 +69,22 @@ namespace MiniCalc
             Console.WriteLine(" ");
             Console.WriteLine($"Thank you for playing. The sum of all round is {totalSum}. Bye");
             Console.WriteLine("=========================");
+        }
+
+        private static double computeTwoValues(double firstTerm, double secondTerm, string o) // o - operator
+        {
+            double result = 0;
+            if (o == "+")
+                result = firstTerm + secondTerm;
+            if (o == "-")
+                result = firstTerm - secondTerm;
+            if (o == "/")
+                result = firstTerm / secondTerm;
+            if (o == "*")
+                result = firstTerm * secondTerm;
+            if (o == "%")
+                result = firstTerm % secondTerm;
+            return result;
         }
     }
 }
